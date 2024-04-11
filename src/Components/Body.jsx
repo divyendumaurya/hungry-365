@@ -2,19 +2,21 @@ import React from 'react'
 import { restaurantList } from "../Contants"
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
+import Shimmer from './Shimmer';
 
 
 
 function filterData(searchText, restaurants) {
   const filterData = restaurants.filter((restaurant) =>
-    restaurant.data.name.includes(searchText)
+    restaurant?.info?.name?.toLowerCase()?.includes(searchText.toLowerCase())
   );
 
   return filterData;
 }
 
 const Body = () => {
-  const [restaurantss, setRestaurantss] = useState();
+  const [allRestaurants , setAllRestaurants ] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
 
 useEffect(()=>{
@@ -27,12 +29,18 @@ async function getRestaurants(){
 const json = await data.json();
 console.log(json);
 
-setRestaurantss(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-console.log(restaurantss);
+setAllRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+setFilteredRestaurants (json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants); 
+
+
+console.log(allRestaurants);
 }
 
+// if (!allRestaurants) return null ;
 
-  return (
+if(filteredRestaurants?.length ==0) return <h2>No Restaurant matches your search!</h2>;
+
+  return allRestaurants?.length == 0  ?( <Shimmer/>) : (
     <>
       <div className="search-container">
         <input
@@ -48,16 +56,17 @@ console.log(restaurantss);
           className="search-btn"
           onClick={() => {
             //need to filter the data
-            const data = filterData(searchText, restaurantss);
+            const data = filterData(searchText, allRestaurants);
             // update the state - restaurants
-            setRestaurantss(data);
+            setFilteredRestaurants(data);
           }}
         >
           Search
         </button>
       </div>
       <div className="restaurant-list">
-        {restaurantss?.map((restaurant) => {
+        
+        {filteredRestaurants.map((restaurant) => {
           return (
             <RestaurantCard {...restaurant.info} key={restaurant.info.id} />
           );

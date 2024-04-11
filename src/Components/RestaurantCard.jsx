@@ -1,6 +1,6 @@
 import { IMG_CDN_URL } from "../Contants";
 
-const RestrauntCard = ({
+const RestaurantCard = ({
   name,
   cloudinaryImageId,
   cuisines,
@@ -17,4 +17,7 @@ const RestrauntCard = ({
   );
 };
 
-export default RestrauntCard;
+export default RestaurantCard;
+
+
+
