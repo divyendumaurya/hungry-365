@@ -27,18 +27,18 @@ useEffect(()=>{
 async function getRestaurants(){
   const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6145&lng=77.3063&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
 const json = await data.json();
-console.log(json);
+// console.log(json);
 
 setAllRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 setFilteredRestaurants (json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants); 
 
 
-console.log(allRestaurants);
+// console.log(allRestaurants);
 }
 
 // if (!allRestaurants) return null ;
 
-if(filteredRestaurants?.length ==0) return <h2>No Restaurant matches your search!</h2>;
+// if(filteredRestaurants?.length ==0) return <h2>No Restaurant matches your search!</h2>;
 
   return allRestaurants?.length == 0  ?( <Shimmer/>) : (
     <>
