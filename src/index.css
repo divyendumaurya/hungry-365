@@ -42,3 +42,7 @@
   margin: 10px;
   height: 300px;
 }
+
+.menu{
+  display: flex;
+}
