@@ -50,7 +50,7 @@ if(!isOnline){
 
   return allRestaurants?.length == 0  ?( <Shimmer/>) : (
     <>
-      <div className="search-container">
+      <div className="search-container p-5 bg-slate-100 my-3 shadow-md ">
         <input
           type="text"
           className="search-input"
@@ -61,7 +61,7 @@ if(!isOnline){
           }}
         />
         <button
-          className="search-btn"
+          className="search-btn m-2 p-2 bg-purple-200 rounded-md hover:bg-purple-600"
           onClick={() => {
             //need to filter the data
             const data = filterData(searchText, allRestaurants);
@@ -72,7 +72,7 @@ if(!isOnline){
           Search
         </button>
       </div>
-      <div className="restaurant-list">
+      <div className="flex flex-wrap">
         
         {filteredRestaurants.map((restaurant) => {
           return (

@@ -9,7 +9,7 @@ const loggedInUser = () =>{
 const Title = () => (
     <a href="/">
       <img
-        className="logo"
+        className=" w-24 p-2 mx-auto"
         alt="logo"
         src="https://yt3.ggpht.com/ytc/AMLnZu_EC-ECXAxRAixWGEfMsE1rdSoetBHyxmLNdtCB=s900-c-k-c0x00ffffff-no-rj"
       />
@@ -22,15 +22,15 @@ const Header = () => {
   const [ isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
-    <div className="header">
+    <div className=" flex justify-between bg-green-200 shadow-md">
       <Title />
 
       <div className="nav-items">
-        <ul>
-         <Link to="/"> <li> Home</li></Link>
-          <Link to="/about"><li>About</li></Link>
-          <Link to ="/contact"><li>Contact</li></Link>
-          <li>Cart</li>
+        <ul className='flex py-10 '>
+         <Link to="/"> <li className='px-3'> Home</li></Link>
+          <Link to="/about"><li  className='px-3'>About</li></Link>
+          <Link to ="/contact"><li  className='px-3'>Contact</li></Link>
+          <li  className='px-3'>Cart</li>
         </ul>
       </div>
      { isLoggedIn ?( <button onClick={()=>setIsLoggedIn(false)}>Log Out</button>) :( <button onClick={()=> setIsLoggedIn(true)}>Log in</button>)
