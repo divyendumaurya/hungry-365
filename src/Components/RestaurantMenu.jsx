@@ -2,38 +2,20 @@ import React, { useEffect, useState } from 'react'
 import {useParams} from "react-router-dom";
 import { IMG_CDN_URL } from '../Contants';
 import Shimmer from './Shimmer';
+import useRestaurant from '../Utils/useRestaurant';
 
 const RestaurantMenu = () => {
     const {id} = useParams();
 
-    const [restaurant , setRestaurant] = useState({});
-    const [menu , setMenu] = useState(null);
+    // const [restaurant , setRestaurant] = useState({});
+    // const [menu , setMenu] = useState(null);
     
 
-useEffect(()=>{
-getRestaurantInfo();
-},[])
+const {restaurant, menu} = useRestaurant(id);
 
-async function getRestaurantInfo(){
-
-    
-   
-    const data = await fetch (`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.5265299&lng=77.3991879&restaurantId=${id}&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER`);
-    const json = await data.json();
-
-    console.log(json);
-
-    setRestaurant(json?.data?.cards[2]?.card?.card?.info);
-    setMenu(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards);
-
-    console.log(menu);
-    
-}
-
-// !restaurant ? (<Shimmer/>) : 
-
-
-  return (
+return !restaurant || !menu ? (
+    <Shimmer />
+  ) : (
     <><div className="menu">
     <div >
     <h1>

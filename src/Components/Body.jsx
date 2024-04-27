@@ -4,6 +4,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
+import useOnline from '../Utils/useOnline';
 
 
 
@@ -36,6 +37,11 @@ setFilteredRestaurants (json?.data?.cards[4]?.card?.card?.gridElements?.infoWith
 
 
 // console.log(allRestaurants);
+}
+
+const isOnline =useOnline();
+if(!isOnline){
+  return <h1>No Internet Connection</h1>
 }
 
 // if (!allRestaurants) return null ;
