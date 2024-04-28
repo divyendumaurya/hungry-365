@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useState , useContext} from 'react'
 import Header from './Components/Header'
 import Body from './Components/Body'
 import Footer from './Components/Footer'
@@ -7,14 +7,20 @@ import About from './Components/About'
 import Error from './Components/Error'
 import Contact from './Components/Contact'
 import RestaurantMenu from './Components/RestaurantMenu'
-
-
+import UserContext from './Utils/UserContext'
 
 
 
 const App = () => {
+const [user, setUser] = useState({
+  name : "Rajat",
+  email : "rajat@gmail.com"
+});
+
   return (
-    <>
+    <UserContext.Provider
+    value ={{ user,setUser }}
+    >
     <Header/>
     
     <Outlet/>
@@ -22,7 +28,7 @@ const App = () => {
     <Footer/>
    
     
-    </>
+    </UserContext.Provider>
   )
 }
 
