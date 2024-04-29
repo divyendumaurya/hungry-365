@@ -2,8 +2,8 @@ import React from 'react'
 
 const Shimmer = () => {
   return (
-    <><div className="restaurant-list">
-      {Array(10).fill('').map((e,index)=>( <div key={index} className="shimmer-cards">
+    <><div className="flex flex-wrap">
+      {Array(10).fill('').map((e,index)=>( <div key={index} className="w-[200px] bg-gray-300 p-3 m-3 h-64">
 
 </div>))}
   
@@ -14,3 +14,4 @@ const Shimmer = () => {
 }
 
 export default Shimmer
+

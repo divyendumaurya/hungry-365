@@ -20,8 +20,8 @@ const RestaurantCard = ({
       <h2 className="font-semibold">{name}</h2>
       <h3>ID {id}</h3>
       <h3>{cuisines.join(", ")}</h3>
-      <h4>{sla.lastMileTravelString} minutes</h4>
-      <h4>{sla.deliveryTime} hr</h4>
+      <h4>{sla.lastMileTravelString} </h4>
+      <h4>{sla.deliveryTime} mins</h4>
       <h5>{user.name}</h5>
     </div>
   );

@@ -8,8 +8,9 @@ import Error from './Components/Error'
 import Contact from './Components/Contact'
 import RestaurantMenu from './Components/RestaurantMenu'
 import UserContext from './Utils/UserContext'
-
-
+import { Provider } from 'react-redux'
+import store from './Utils/store'
+import Cart from './Components/Cart'
 
 const App = () => {
 const [user, setUser] = useState({
@@ -18,6 +19,7 @@ const [user, setUser] = useState({
 });
 
   return (
+    <Provider store={store} >
     <UserContext.Provider
     value ={{ user,setUser }}
     >
@@ -29,6 +31,7 @@ const [user, setUser] = useState({
    
     
     </UserContext.Provider>
+    </Provider>
   )
 }
 
@@ -52,6 +55,10 @@ children :[
   {
     path :'/restaurant/:id',
     element : <RestaurantMenu/>,
+  },
+  {
+    path :'/cart',
+    element : <Cart/>
   },
   
 ]

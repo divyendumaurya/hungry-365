@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
 import UserContext from '../Utils/UserContext';
+import { useSelector } from 'react-redux';
 
 
 const loggedInUser = () =>{
@@ -23,6 +24,9 @@ const Header = () => {
   const [ isLoggedIn, setIsLoggedIn] = useState(false);
   const {user} = useContext(UserContext);
 
+  const cartItems = useSelector(store => store.cart.items);
+  console.log(cartItems)
+;
   return (
     <div className=" flex justify-between bg-green-200 shadow-md">
       <Title />
@@ -32,7 +36,8 @@ const Header = () => {
          <Link to="/"> <li className='px-3'> Home</li></Link>
           <Link to="/about"><li  className='px-3'>About</li></Link>
           <Link to ="/contact"><li  className='px-3'>Contact</li></Link>
-          <li  className='px-3'>Cart</li>
+          <Link to ='/cart'><li  className='px-3'>Cart - {cartItems.length} </li></Link>
+          
         </ul>
       </div>
       <span className='p-10  font-bold text-red-600'>{user.name} </span>
