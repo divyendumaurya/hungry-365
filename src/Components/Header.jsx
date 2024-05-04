@@ -4,13 +4,14 @@ import UserContext from '../Utils/UserContext';
 import { useSelector } from 'react-redux';
 
 
+
 const loggedInUser = () =>{
   return true;
 }
 
 const Title = () => (
     <a href="/">
-      <img
+      <img data-testid = "logo"
         className=" w-24 p-2 mx-auto"
         alt="logo"
         src="https://yt3.ggpht.com/ytc/AMLnZu_EC-ECXAxRAixWGEfMsE1rdSoetBHyxmLNdtCB=s900-c-k-c0x00ffffff-no-rj"
@@ -36,7 +37,7 @@ const Header = () => {
          <Link to="/"> <li className='px-3'> Home</li></Link>
           <Link to="/about"><li  className='px-3'>About</li></Link>
           <Link to ="/contact"><li  className='px-3'>Contact</li></Link>
-          <Link to ='/cart'><li  className='px-3'>Cart - {cartItems.length} </li></Link>
+          <Link data-testid="cart" to ='/cart'><li  className='px-3'>Cart - {cartItems.length} </li></Link>
           
         </ul>
       </div>
