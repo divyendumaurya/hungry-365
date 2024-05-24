@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
 import UserContext from '../Utils/UserContext';
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
+import { Button } from "flowbite-react";;
 
 
 
@@ -41,8 +42,8 @@ const Header = () => {
           
         </ul>
       </div>
-      <span className='p-10  font-bold text-red-600'>{user.name} </span>
-     { isLoggedIn ?( <button onClick={()=>setIsLoggedIn(false)}>Log Out</button>) :( <button onClick={()=> setIsLoggedIn(true)}>Log in</button>)
+      <span className='p-10  font-bold text-red-600 h-3 w-6'>{user.name} </span>
+     { isLoggedIn ?( <Button  onClick={()=>setIsLoggedIn(false)}>Log Out</Button>) :( <Button onClick={()=> setIsLoggedIn(true)}>Log in</Button>)
 }
       
     </div>
