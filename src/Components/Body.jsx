@@ -6,6 +6,9 @@ import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
 import useOnline from '../Utils/useOnline';
 import UserContext from '../Utils/UserContext';
+import { IoMdSearch } from "react-icons/io";
+import Swiper from './Swiper'
+
 
 
 
@@ -53,37 +56,41 @@ if(!isOnline){
 
   return allRestaurants?.length == 0  ?( <Shimmer/>) : (
     <>
-      <div  className="search-container p-5 bg-slate-100 my-3 shadow-md ">
-        <input
+     <div className="max-w-screen-sm mx-auto">
+  <div className="flex items-center bg-white border-gray-200  px-4 py-2 rounded-b-lg shadow-sm">
+    <div className="flex items-center flex-grow">
+      <input
         data-testid="search-input"
-          type="text"
-          className="search-input"
-          placeholder="Search"
-          value={searchText}
-          onChange={(e) => {
-            setSearchText(e.target.value);
-          }}
-        />
-        <button
-        data-testid="search-btn"
-          className="search-btn m-2 p-2 bg-purple-200 rounded-md hover:bg-purple-600"
-          onClick={() => {
-            //need to filter the data
-            const data = filterData(searchText, allRestaurants);
-            // update the state - restaurants
-            setFilteredRestaurants(data);
-          }}
-        >
-          Search
-        </button>
-        <input onChange={e => setUser(
+        type="text"
+        className="search-input text-gray-800 bg-transparent focus:outline-none flex-grow"
+        placeholder="Search"
+        value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
+      />
+    </div>
+    <button
+      data-testid="search-btn"
+      className="flex items-center px-3 py-2 bg-gray-200 rounded-full text-gray-800 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300 ml-3"
+      onClick={() => {
+        const data = filterData(searchText, allRestaurants);
+        setFilteredRestaurants(data);
+      }}
+    >
+      <IoMdSearch size={20} />
+    </button>
+  </div>
+</div>
+<Swiper/>
+        {/* <input onChange={e => setUser(
           {
             name : e.target.value,
             email : "example@gmail.com",
           }
-        )} value={user.name} />
-      </div>
-      <div className="flex flex-wrap" data-testid="res-list">
+        )} value={user.name} /> */}
+      {/* </div> */}
+
+      
+      <div className="flex flex-wrap justify-center mx-10" data-testid="res-list">
        
         
         {filteredRestaurants?.map((restaurant) => {

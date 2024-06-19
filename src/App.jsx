@@ -11,6 +11,7 @@ import UserContext from './Utils/UserContext'
 import { Provider } from 'react-redux'
 import store from './Utils/store'
 import Cart from './Components/Cart'
+import Swiper from './Components/Swiper'
 
 const App = () => {
 const [user, setUser] = useState({
@@ -24,6 +25,7 @@ const [user, setUser] = useState({
     value ={{ user,setUser }}
     >
     <Header/>
+    
     
     <Outlet/>
 

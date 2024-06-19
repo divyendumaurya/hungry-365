@@ -17,7 +17,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.1.1",
-    "react-router-dom": "^6.22.3"
+    "react-router-dom": "^6.22.3",
+    "react-swiper-component": "^1.0.0",
+    "swiper": "^11.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",

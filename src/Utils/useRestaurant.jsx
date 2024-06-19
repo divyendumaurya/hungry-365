@@ -23,7 +23,7 @@ useEffect(()=>{
         setRestaurant(json?.data?.cards[2]?.card?.card?.info);
         setMenu(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards);
     
-        console.log(restaurant);
+        console.log(menu);
         
     }
 
