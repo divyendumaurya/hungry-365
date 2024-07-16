@@ -12,6 +12,7 @@
     "watch-test": "jest --watch"
   },
   "dependencies": {
+    "@formspree/react": "^2.5.1",
     "@reduxjs/toolkit": "^2.2.3",
     "flowbite-react": "^0.9.0",
     "react": "^18.2.0",

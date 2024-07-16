@@ -108,7 +108,7 @@ const Header = () => {
         </li>
         <li>
           <Link
-            to="/offers"
+            to="/"
             className="flex items-center px-3 py-2 rounded-full text-gray-900 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700"
           >
             <IoMdPricetag size={20} className="mr-2" />
@@ -117,7 +117,7 @@ const Header = () => {
         </li>
         <li>
           <Link
-            to="/help"
+            to="/"
             className="flex items-center px-3 py-2 rounded-full text-gray-900 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700"
           >
             <IoMdHelpCircle size={20} className="mr-2" />

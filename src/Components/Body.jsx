@@ -38,11 +38,24 @@ const json = await data.json();
 
 // console.log(json);
 
-setAllRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-setFilteredRestaurants (json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants); 
+// setAllRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+// setFilteredRestaurants (json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants); 
 
 
 // console.log(allRestaurants);
+
+const restaurantCards = json?.data?.cards.filter(card => 
+  card?.card?.card?.['@type'] === "type.googleapis.com/swiggy.gandalf.widgets.v2.GridWidget" &&
+  card?.card?.card?.gridElements?.infoWithStyle?.restaurants
+);
+
+const allRestaurantsData = restaurantCards.flatMap(card => 
+  card?.card?.card?.gridElements?.infoWithStyle?.restaurants || []
+);
+
+setAllRestaurants(allRestaurantsData);
+setFilteredRestaurants(allRestaurantsData);
+
 }
 
 const isOnline =useOnline();
@@ -81,6 +94,11 @@ if(!isOnline){
   </div>
 </div>
 <Swiper/>
+<div>
+  <h2 className="font-bold text-3xl text-gray-900 ml-48 my-4" >
+    Top Restaurants near you
+  </h2>
+</div>
         {/* <input onChange={e => setUser(
           {
             name : e.target.value,
