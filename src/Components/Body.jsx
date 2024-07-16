@@ -58,6 +58,11 @@ setFilteredRestaurants(allRestaurantsData);
 
 }
 
+const handleSearch = () => {
+  const filteredData = filterData(searchText, allRestaurants);
+  setFilteredRestaurants(filteredData);
+};
+
 const isOnline =useOnline();
 if(!isOnline){
   return <h1>No Internet Connection</h1>
@@ -78,7 +83,10 @@ if(!isOnline){
         className="search-input text-gray-800 bg-transparent focus:outline-none flex-grow"
         placeholder="Search"
         value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
+        onChange={(e) => {
+          setSearchText(e.target.value);
+          handleSearch(); // Search on each keystroke
+        }}
       />
     </div>
     <button
@@ -95,7 +103,7 @@ if(!isOnline){
 </div>
 <Swiper/>
 <div>
-  <h2 className="font-bold text-3xl text-gray-900 ml-48 my-4" >
+  <h2 className="font-bold text-3xl text-gray-900 ml-48 my-11" >
     Top Restaurants near you
   </h2>
 </div>
@@ -108,15 +116,17 @@ if(!isOnline){
       {/* </div> */}
 
       
+
       <div className="flex flex-wrap justify-center mx-10" data-testid="res-list">
-       
-        
-        {filteredRestaurants?.map((restaurant) => {
-          return (
-            <Link key={restaurant.info.id} to={"/restaurant/" +restaurant.info.id }> <RestaurantCard {...restaurant.info}  /></Link>
-          );
-        })}
-      </div>
+  {filteredRestaurants.map((restaurant, index) => (
+    <Link 
+      key={restaurant.info.id + "-" + index} 
+      to={"/restaurant/" + restaurant.info.id} //Unique Key passsed , warning avoided of same keys
+    >
+      <RestaurantCard {...restaurant.info} />
+    </Link>
+  ))}
+</div>
     </>
   );
 };
