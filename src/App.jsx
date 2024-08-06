@@ -12,6 +12,7 @@ import { Provider } from 'react-redux'
 import store from './Utils/store'
 import Cart from './Components/Cart'
 import Swiper from './Components/Swiper'
+import Login from './Components/Login'
 
 const App = () => {
 const [user, setUser] = useState({
@@ -61,6 +62,10 @@ children :[
   {
     path :'/cart',
     element : <Cart/>
+  },
+  {
+    path :'/login',
+    element : <Login/>
   },
   
 ]

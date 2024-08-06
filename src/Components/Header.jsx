@@ -1,10 +1,9 @@
-import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom';
-import UserContext from '../Utils/UserContext';
-import { useSelector } from 'react-redux'
-import { IoMdCart, IoMdHome, IoMdPerson, IoMdMail, IoMdPricetag, IoMdHelpCircle } from "react-icons/io";
+import React, { useContext, useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { IoMdCart, IoMdHome, IoMdPerson, IoMdMail, IoMdPricetag, IoMdHelpCircle, IoMdArrowDropdown, IoMdLogOut } from "react-icons/io";
+import { Dropdown } from 'flowbite-react';
 import logo from '../assets/logo.png'
-
 
 
 const loggedInUser = () =>{
@@ -25,15 +24,36 @@ const loggedInUser = () =>{
 const Header = () => {
 
   const [ isLoggedIn, setIsLoggedIn] = useState(false);
-  const {user} = useContext(UserContext);
+  // const {user} = useContext(UserContext);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const cartItems = useSelector(store => store.cart.items);
+  const user = useSelector(store => store.user.currentUser);
   console.log(cartItems)
 ;
+
+useEffect(() => {
+  // Check if user is logged in (you might want to use a more robust method)
+  setIsLoggedIn(!!user);
+}, [user]);
+
+const handleLogin = () => {
+  navigate('/login');
+};
+
+const handleLogout = () => {
+  // Dispatch logout action (you need to create this action and reducer)
+  dispatch({ type: 'LOGOUT' });
+  setIsLoggedIn(false);
+  setShowDropdown(false);
+};
+
   return (
     <>
     
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 shadow-md">
+    <nav className="bg-white border-gray-200  shadow-md">
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2 h-20">
     <Link to="/" className="flex items-center h-full">
       <img src={logo} className="h-full" alt="365 Hungry Logo" />
@@ -57,31 +77,59 @@ const Header = () => {
       </Link>
 
       {isLoggedIn ? (
-        <button
-          type="button"
-          className="flex items-center px-3 py-2 bg-red-500 rounded-full text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
-          onClick={() => setIsLoggedIn(false)}
-        >
-          <IoMdPerson size={20} className="mr-2" />
-          Log Out
-        </button>
-      ) : (
-        <button
-          type="button"
-          className="flex items-center px-3 py-2 bg-blue-700 rounded-full text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-green-300"
-          onClick={() => setIsLoggedIn(true)}
-        >
-          <IoMdPerson size={20} className="mr-2" />
-          Log In
-        </button>
-      )}
-    </div>
+          <Dropdown
+            arrowIcon={false}
+            inline
+            label={
+              <button
+                type="button"
+                className="flex items-center px-3 py-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-300 ease-in-out transform hover:scale-105"
+              >
+                {user.photoURL ? (
+                  <img src={user.photoURL} alt={user.displayName} className="w-8 h-8 rounded-full mr-2 border-2 border-white" />
+                ) : (
+                  <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center mr-2">
+                    <IoMdPerson size={20} className="text-gray-600" />
+                  </div>
+                )}
+                <span className="font-semibold">{user.displayName?.split(' ')[0]}</span>
+                <IoMdArrowDropdown size={20} className="ml-1" />
+              </button>
+            }
+          >
+            <Dropdown.Header>
+              <span className="block text-sm">{user.displayName}</span>
+              <span className="block truncate text-sm font-medium">{user.email}</span>
+            </Dropdown.Header>
+            <Dropdown.Item>Dashboard</Dropdown.Item>
+            <Dropdown.Item>Settings</Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item onClick={handleLogout} className="text-red-600 hover:bg-red-100 focus:bg-red-100">
+              <div className="flex items-center">
+                <IoMdLogOut className="mr-2" size={20} />
+                <span>Sign out</span>
+              </div>
+            </Dropdown.Item>
+          </Dropdown>
+        ) : (
+          <button
+            type="button"
+            className="flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-300 ease-in-out transform hover:scale-105"
+            onClick={handleLogin}
+          >
+            <IoMdPerson size={20} className="mr-2" />
+            Log In
+          </button>
+        )}
+      </div>
+
+      {/* mm */}
     <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
-      <ul className="flex flex-row font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+      <ul className="flex flex-row font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white ">
         <li>
           <Link
             to="/"
-            className="flex items-center px-3 py-2 rounded-full text-gray-900 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700"
+            className="flex items-center px-3 py-2 rounded-full text-gray-900 hover:bg-gray-200 "
             aria-current="page"
           >
             <IoMdHome size={20} className="mr-2" />
@@ -91,7 +139,7 @@ const Header = () => {
         <li>
           <Link
             to="/about"
-            className="flex items-center px-3 py-2 rounded-full text-gray-900 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700"
+            className="flex items-center px-3 py-2 rounded-full text-gray-900 hover:bg-gray-200 "
           >
             <IoMdPerson size={20} className="mr-2" />
             About
@@ -100,7 +148,7 @@ const Header = () => {
         <li>
           <Link
             to="/contact"
-            className="flex items-center px-3 py-2 rounded-full text-gray-900 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700"
+            className="flex items-center px-3 py-2 rounded-full text-gray-900 hover:bg-gray-200 "
           >
             <IoMdMail size={20} className="mr-2" />
             Contact
@@ -109,7 +157,7 @@ const Header = () => {
         <li>
           <Link
             to="/"
-            className="flex items-center px-3 py-2 rounded-full text-gray-900 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700"
+            className="flex items-center px-3 py-2 rounded-full text-gray-900 hover:bg-gray-200 "
           >
             <IoMdPricetag size={20} className="mr-2" />
             Offers
@@ -118,7 +166,7 @@ const Header = () => {
         <li>
           <Link
             to="/"
-            className="flex items-center px-3 py-2 rounded-full text-gray-900 hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700"
+            className="flex items-center px-3 py-2 rounded-full text-gray-900 hover:bg-gray-200 "
           >
             <IoMdHelpCircle size={20} className="mr-2" />
             Help

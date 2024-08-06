@@ -14,7 +14,7 @@
 
 //   return (
 //     <div className="max-w-screen-xl mx-auto p-4">
-//       <h1 className="font-bold text-3xl text-gray-900 dark:text-white mb-6">
+//       <h1 className="font-bold text-3xl text-gray-900  mb-6">
 //         Cart Items - {cartItems.length}
 //       </h1>
 //       <button
@@ -53,12 +53,12 @@ const Cart = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto p-4 ">
-      <h2 className="font-bold text-3xl text-gray-900 dark:text-white mb-6">
+      <h2 className="font-bold text-3xl text-gray-900  mb-6">
         No of Items in your cart - {cartItems.length}
       </h2>
       {cartItems.length === 0 ? (
-        <div className="bg-orange-100 h-[300px] dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg p-6 text-center shadow-md justify-center">
-          <p className="text-lg text-red-700 dark:text-gray-300 mb-4">
+        <div className="bg-orange-100 h-[300px]  border border-gray-300  rounded-lg p-6 text-center shadow-md justify-center">
+          <p className="text-lg text-red-700  mb-4">
             Your cart is empty. <p className="text-gray-900">Good food is always cooking! Go ahead, order some yummy items from the menu.</p>
           </p>
           <Link

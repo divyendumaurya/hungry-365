@@ -26,8 +26,8 @@ return(
 
 <div className='p-20'>
       
-      <p class="mt-10  mb-3 text-gray-500 dark:text-gray-400 first-line:uppercase first-line:tracking-widest first-letter:text-7xl first-letter:font-bold first-letter:text-gray-900 dark:first-letter:text-gray-100 first-letter:me-3 first-letter:float-start">Hungry365 is a dynamic food ordering app designed to satisfy your cravings with a wide range of cuisines. Featuring a user-friendly interface, it allows you to browse menus, place orders, and track deliveries with ease. Enjoy exclusive deals and a seamless ordering experience anytime, anywhere. Hungry365 - your go-to app for delicious meals delivered fast!</p>
-      <p class="text-gray-500 dark:text-gray-400">With Hungry365, you can explore a variety of restaurants and discover new dishes tailored to your taste. Our secure payment system ensures a hassle-free transaction every time. Experience quick and reliable food delivery with Hungry365, where convenience meets culinary delight..</p>
+      <p class="mt-10  mb-3 text-gray-500  first-line:uppercase first-line:tracking-widest first-letter:text-7xl first-letter:font-bold first-letter:text-gray-900 first-letter:me-3 first-letter:float-start">Hungry365 is a dynamic food ordering app designed to satisfy your cravings with a wide range of cuisines. Featuring a user-friendly interface, it allows you to browse menus, place orders, and track deliveries with ease. Enjoy exclusive deals and a seamless ordering experience anytime, anywhere. Hungry365 - your go-to app for delicious meals delivered fast!</p>
+      <p class="text-gray-500 ">With Hungry365, you can explore a variety of restaurants and discover new dishes tailored to your taste. Our secure payment system ensures a hassle-free transaction every time. Experience quick and reliable food delivery with Hungry365, where convenience meets culinary delight..</p>
       
           </div>
     
